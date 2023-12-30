@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cylwy81djt1v6"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_a54in"]
+[ext_resource type="Texture2D" uid="uid://dlao45jn4tsso" path="res://stickman.png" id="1_myfye"]
+
+[node name="stickChar" type="Node2D"]
+script = ExtResource("1_a54in")
+
+[node name="Stickman" type="Sprite2D" parent="."]
+position = Vector2(449, 381)
+texture = ExtResource("1_myfye")
+
+[node name="Area2D" type="Area2D" parent="Stickman"]
+position = Vector2(-449, -381)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Stickman/Area2D"]
+polygon = PackedVector2Array(326, 374, 302, 366, 275, 354, 242, 319, 226, 267, 239, 221, 260, 193, 285, 176, 319, 166, 350, 168, 379, 175, 405, 192, 424, 214, 441, 249, 441, 276, 433, 301, 423, 326, 414, 339, 400, 352, 379, 364, 357, 370, 336, 374, 336, 398, 395, 465, 393, 471, 387, 470, 336, 413, 336, 499, 370, 537, 390, 560, 391, 638, 386, 640, 382, 637, 379, 563, 329, 507, 301, 641, 294, 643, 291, 637, 326, 473, 326, 413, 264, 468, 259, 467, 258, 463, 326, 395)

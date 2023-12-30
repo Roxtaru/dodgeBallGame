@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://oplyxu4yxufo"]
+
+[ext_resource type="Script" path="res://scripts/wallNode.gd" id="1_0dgxx"]
+[ext_resource type="Texture2D" uid="uid://d50n37s4kulq" path="res://images/wall.png" id="1_6nl3q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m5mxa"]
+size = Vector2(184, 1097)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4ookh"]
+polygon = PackedVector2Array(-265, -819, -265, 277, -83, 277, -83, -819)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5tq3s"]
+size = Vector2(184, 5651)
+
+[node name="wallNode" type="Node2D"]
+position = Vector2(679, 819)
+script = ExtResource("1_0dgxx")
+
+[node name="wall" type="StaticBody2D" parent="."]
+
+[node name="wallArea" type="Area2D" parent="wall"]
+
+[node name="lowerCollision" type="CollisionShape2D" parent="wall/wallArea"]
+position = Vector2(-175, -270.5)
+shape = SubResource("RectangleShape2D_m5mxa")
+
+[node name="lowerWallSprite" type="Sprite2D" parent="wall"]
+position = Vector2(-175, -270.75)
+scale = Vector2(1, 2.08064)
+texture = ExtResource("1_6nl3q")
+
+[node name="lowerLightOccluder" type="LightOccluder2D" parent="wall"]
+position = Vector2(-1, 0)
+occluder = SubResource("OccluderPolygon2D_4ookh")
+
+[node name="scoreArea" type="Area2D" parent="wall"]
+
+[node name="scoreCollision" type="CollisionShape2D" parent="wall/scoreArea"]
+position = Vector2(-175, -3644.5)
+shape = SubResource("RectangleShape2D_5tq3s")
+
+[node name="lowerCollision2" type="CollisionShape2D" parent="wall"]
+position = Vector2(-175, -270.5)
+shape = SubResource("RectangleShape2D_m5mxa")
+
+[connection signal="body_entered" from="wall/scoreArea" to="." method="_on_score_area_body_entered"]

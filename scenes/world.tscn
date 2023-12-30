@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=3 uid="uid://dxybbqcv25y4l"]
+
+[ext_resource type="Script" path="res://scripts/world.gd" id="1_1rqcu"]
+[ext_resource type="PackedScene" uid="uid://cpvvjvr6hw276" path="res://scenes/floor.tscn" id="1_kec1y"]
+[ext_resource type="PackedScene" uid="uid://cylwy81djt1v6" path="res://scenes/player.tscn" id="4_tpkag"]
+[ext_resource type="PackedScene" uid="uid://oplyxu4yxufo" path="res://scenes/wallNode.tscn" id="4_tttky"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mv377"]
+size = Vector2(286, 6750)
+
+[node name="world" type="Node2D"]
+script = ExtResource("1_1rqcu")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 3896.0
+offset_top = -576.0
+offset_right = 4208.0
+offset_bottom = -368.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 150
+text = "0
+"
+
+[node name="mainWall" type="Node2D" parent="."]
+
+[node name="stickChar" parent="mainWall" instance=ExtResource("4_tpkag")]
+position = Vector2(440, 800)
+
+[node name="wallNode" parent="." instance=ExtResource("4_tttky")]
+position = Vector2(2350, 710)
+scale = Vector2(1, 1)
+metadata/_edit_group_ = true
+
+[node name="floor" parent="." instance=ExtResource("1_kec1y")]
+position = Vector2(2176, 1635)
+scale = Vector2(7.59483, 2.48936)
+
+[node name="jumpButton" type="Button" parent="."]
+offset_left = 174.0
+offset_top = 1201.0
+offset_right = 517.0
+offset_bottom = 1365.0
+theme_override_font_sizes/font_size = 100
+text = "Jump"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(2200, 360)
+zoom = Vector2(0.25, 0.25)
+
+[node name="resetter" type="Area2D" parent="."]
+position = Vector2(-1432, 368)
+
+[node name="resetterCollision" type="CollisionShape2D" parent="resetter"]
+position = Vector2(1216, -2759)
+shape = SubResource("RectangleShape2D_mv377")
+
+[connection signal="pressed" from="jumpButton" to="mainWall/stickChar" method="_on_jump_button_pressed"]
+[connection signal="area_entered" from="resetter" to="mainWall/stickChar" method="_on_resetter_area_entered"]

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cylwy81djt1v6"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_kfxt1"]
+[ext_resource type="Texture2D" uid="uid://b442xxkqubr7f" path="res://ballManColored.png" id="2_55g1t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b3j6e"]
+radius = 172.003
+
+[node name="stickChar" type="Node2D"]
+script = ExtResource("1_kfxt1")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+
+[node name="Stickman" type="Sprite2D" parent="RigidBody2D"]
+position = Vector2(449, 381)
+texture = ExtResource("2_55g1t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(418, 334)
+shape = SubResource("CircleShape2D_b3j6e")
