@@ -44,12 +44,10 @@ func wallReset():
 	if randi() % 2 == 0 :
 		var wallInstance = wall.instantiate()
 		wallInstance.position = Vector2(2105, randi_range(992,1792))
-		print(get_parent().name)
 		get_parent().call_deferred("add_child", wallInstance)
 	else:
 		var enemyInstance = enemy.instantiate()
 		enemyInstance.position = Vector2(2105, 960)
-		print(get_parent().name)
 		get_parent().call_deferred("add_child", enemyInstance)
 
 func _on_resetter_area_entered(area):
