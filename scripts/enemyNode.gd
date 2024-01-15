@@ -28,3 +28,8 @@ func _on_enemy_death_area_area_entered(area):
 		#signal to make new wall
 		Global.WALLRESET.emit()
 		
+
+
+func _on_enemy_player_area_entered(area):
+	if area.name == "player":
+		print("quitGame")

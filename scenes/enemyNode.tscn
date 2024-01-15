@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://3tegr1aut1x0"]
+[gd_scene load_steps=7 format=3 uid="uid://3tegr1aut1x0"]
 
 [ext_resource type="Script" path="res://scripts/enemyNode.gd" id="1_7vh47"]
 [ext_resource type="Texture2D" uid="uid://br5mtxpt0pypl" path="res://images/enemy.png" id="1_s7ifj"]
@@ -25,6 +25,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ryrfb"]
+radius = 137.233
+
 [node name="enemyNode" type="CharacterBody2D"]
 script = ExtResource("1_7vh47")
 
@@ -39,7 +42,13 @@ sprite_frames = SubResource("SpriteFrames_rwbxr")
 scale = Vector2(1.39545, 1.25)
 polygon = PackedVector2Array(-101.043, -29.6, 103.909, -28, 84.5605, -70.4, 63.7787, -89.6, 48.7298, -100.8, 32.2477, -109.6, 12.8991, -113.6, -3.58307, -113.6, -23.6483, -109.6, -39.4138, -104.8, -53.0295, -96.8, -63.7787, -90.4, -73.0947, -82.4, -78.8276, -75.2, -85.9938, -63.2, -95.3098, -47.2)
 
-[node name="killArea" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-141, -37, 145, -35, 149, -16, 147, 23, 137, 60, 109, 96, 79, 118, 26, 138, -27, 138, -67, 124, -89, 111, -113, 90, -135, 59, -146, 27, -146, -17)
+[node name="enemyPlayer" type="Area2D" parent="."]
+
+[node name="killArea" type="CollisionPolygon2D" parent="enemyPlayer"]
+polygon = PackedVector2Array(-141, -36, 145, -34, 149, -16, 147, 23, 137, 60, 109, 96, 79, 118, 26, 138, -27, 138, -67, 124, -89, 111, -113, 90, -135, 59, -146, 27, -146, -17)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ryrfb")
 
 [connection signal="area_entered" from="enemyDeathArea" to="." method="_on_enemy_death_area_area_entered"]
+[connection signal="area_entered" from="enemyPlayer" to="." method="_on_enemy_player_area_entered"]

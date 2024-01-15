@@ -54,3 +54,4 @@ func _on_resetter_area_entered(area):
 	if area.name == "wallArea" or area.name == "enemyDeathArea":
 		area.queue_free()
 		wallReset()
+
